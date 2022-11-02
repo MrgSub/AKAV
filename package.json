@@ -1,11 +1,12 @@
 {
 	"name": "@ajxb/akav",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "actual keyboard avoiding view for React Native",
-	"main": "index.js",
+	"main": "dist/index.js",
 	"private": false,
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "tsc",
+		"bundle": "rollup dist/index.js --o dist/index.cjs --f cjs"
 	},
 	"repository": {
 		"type": "git",
@@ -14,19 +15,25 @@
 	"author": "AJW-M",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/ajw-m/AKAV/issues"
+		"url": "https://github.com/MrgSub/AKAV/issues"
 	},
-	"homepage": "https://github.com/ajw-m/AKAV#readme",
-	"devDependencies": {
-		"react": "^17.0.2",
-		"react-native": "^0.63.0",
-		"styled-components": "^5.2.2",
-		"typescript": "^4.2.3"
-	},
+	"homepage": "https://github.com/MrgSub/AKAV#readme",
 	"prettier": {
 		"useTabs": true,
 		"tabWidth": 4,
 		"singleQuote": true,
 		"jsxSingleQuote": true
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-native": "^0.70.4",
+		"styled-components": "^5.3.6"
+	},
+	"devDependencies": {
+		"@types/react": "^18.0.24",
+		"@types/react-native": "^0.70.6",
+		"@types/styled-components": "^5.1.26",
+		"rollup": "^3.2.5",
+		"typescript": "^4.8.4"
 	}
 }

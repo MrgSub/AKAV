@@ -8,30 +8,19 @@ import {
 	SafeAreaView,
 } from 'react-native';
 import styled from 'styled-components';
+import {AKAVProps, IStylingProps} from "./types";
 
 const MainView = styled(SafeAreaView)`
-	background: ${(props) => (props.background ? props.background : '#FFFFFF')};
+	background: ${(props: IStylingProps) => (props.background ? props.background : '#FFFFFF')};
 	flex: 1;
 `;
 
 const Box = styled(View)`
-	padding-left: ${(props) => props.pl}px;
-	padding-right: ${(props) => props.pr}px;
+	padding-left: ${(props: IStylingProps) => props.pl}px;
+	padding-right: ${(props: IStylingProps) => props.pr}px;
 	flex: 1;
 	justify-content: flex-end;
 `;
-
-interface AKAVProps {
-	children?: React.ReactNode;
-	background?: string;
-	pl?: number;
-	pr?: number;
-	needsSTB?: false | true;
-	submitButton: React.ReactNode;
-	offset?: number;
-	scrollOffset?: number;
-	testID?: string;
-}
 
 /**
  * Actual Keyboard Avoiding View
@@ -62,28 +51,28 @@ const AKAV = ({
 	const _keyboardDidShow = () => {
 		if (!sv || !sv.current) return;
 		if (!needsSTB) return;
-		sv.current.scrollToEnd();
+		(sv.current as ScrollView).scrollToEnd();
 	};
 
 	const keyboardDidShow = () => {
+		if (!sv || !sv.current) return;
 		if (!scrollOffset) return;
-		sv.current.scrollTo({ x: 0, y: scrollOffset, animated: true });
+		(sv.current as ScrollView).scrollTo({ x: 0, y: scrollOffset, animated: true });
 	};
 
 	React.useEffect(() => {
 		if (!scrollOffset) return;
 		Keyboard.addListener('keyboardDidShow', keyboardDidShow);
 		return () => {
-			Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+			Keyboard.removeAllListeners('keyboardDidShow');
 		};
 	}, [scrollOffset]);
 
 	React.useEffect(() => {
 		Keyboard.addListener('keyboardWillShow', _keyboardDidShow);
 
-		// cleanup function
 		return () => {
-			Keyboard.removeListener('keyboardWillShow', _keyboardDidShow);
+			Keyboard.removeAllListeners('keyboardWillShow');
 		};
 	}, []);
 

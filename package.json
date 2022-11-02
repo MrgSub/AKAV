@@ -5,8 +5,7 @@
 	"main": "dist/index.js",
 	"private": false,
 	"scripts": {
-		"build": "tsc",
-		"bundle": "rollup dist/index.js --o dist/index.cjs --f cjs"
+		"build": "tsc"
 	},
 	"repository": {
 		"type": "git",
@@ -33,7 +32,6 @@
 		"@types/react": "^18.0.24",
 		"@types/react-native": "^0.70.6",
 		"@types/styled-components": "^5.1.26",
-		"rollup": "^3.2.5",
 		"typescript": "^4.8.4"
 	}
 }
